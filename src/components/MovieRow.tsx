@@ -6,16 +6,13 @@ interface MovieRowProps {
     title: string;
     movies?: Movie[]; 
     markNewCount?: number;
-    landscapeIndexes?: number[];
-    onViewAll?: () => void;
 }
 
 export default function MovieRow({
     title,
     movies = [],
     markNewCount = 0,
-    landscapeIndexes = [],
-    onViewAll
+    
 }: MovieRowProps) {
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -78,7 +75,6 @@ export default function MovieRow({
                             key={`${title}-${movie.id}-${idx}`}
                             movie={movie}
                             isNew={idx < markNewCount}
-                            isLandscape={landscapeIndexes.includes(idx)}
                         />
                     ))}
                 </div>

@@ -215,6 +215,7 @@ export const myCustomCartoons = [
         embedId: "vi342539801",
         genres: ["Animation", "Sci-Fi", "Action"]
     },
+    
     {
         id: 90,
         title: "Batman Beyond",
@@ -239,20 +240,9 @@ export const myCustomCartoons = [
         embedId: "vi185251353",
         genres: ["Animation", "Action", "Adventure"]
     },
-     {
-        id: 89,
-        title: "Batman: Hush",
-        tmdbId: 537056,
-        poster_path: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdxPV7b6PoDu6mmhGsSarhViafEOBVOpK0_qAZy_jWtSZz5GZWdKJJge0&s=10",
-        backdrop_path: "horizontal_genis_sekil_linki.jpg",
-        vote_average: 6.9,
-        year: 2008,
-        overview: "A mysterious new villain named Hush has emerged from Batman's past, orchestrating a sinister plot to torment the Dark Knight and destroy his allies one by one.",
-        embedId: "vi785497113",
-        genres: ["Animation", "Sci-Fi", "Action"]
-    },
+     
     {
-            id: 90,
+            id: 92,
             title: "Coyote vs. Acme",
             tmdbId: 1204680,
             poster_path: "https://upload.wikimedia.org/wikipedia/en/c/c0/Coyote_vs._Acme_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
@@ -262,5 +252,5 @@ export const myCustomCartoons = [
             backdrop_path: "horizontal_genis_sekil_linki.jpg",
             embedId: "vi3262368537",
             genres: ["Comedy", "Adventure"]
-        },
-];
+        }
+]

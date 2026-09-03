@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { myCustomMovies } from '../data/myMovies';
 import { myCustomSeries } from '../data/mySeries';
 import HeroSlider from '../components/HeroSlider';
@@ -18,7 +17,6 @@ export interface Movie {
 }
 
 function Home() {
-    const navigate = useNavigate();
     const [allContent, setAllContent] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [activeTab, setActiveTab] = useState<string>('Trending Now');
@@ -117,11 +115,7 @@ function Home() {
                                 key={genre}
                                 title={`${activeTab === 'Trending Now' ? 'Trending' : activeTab} ${genre}`}
                                 movies={genreMovies}
-                                onViewAll={
-                                    activeTab === 'Trending Now'
-                                        ? undefined
-                                        : () => navigate(activeTab === 'Movies' ? '/movies' : '/series')
-                                }
+                                
                             />
                         ))}
                     </div>

@@ -8,10 +8,9 @@ interface MovieCardProps {
     className?: string;
     mediaType?: 'movie' | 'tv';
     isNew?: boolean;          
-    isLandscape?: boolean;    
 }
 
-function MovieCard({ movie, className, mediaType = 'movie', isNew, isLandscape }: MovieCardProps) {
+function MovieCard({ movie, className, mediaType = 'movie',  }: MovieCardProps) {
     const navigate = useNavigate();
     const { isFavorite, addFavorite, removeFavorite } = useFavorites();
     const { isAuthenticated, openAuthModal } = useAuth();

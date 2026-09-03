@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
 import { myCustomMovies } from '../../data/myMovies';
 import { myCustomSeries } from '../../data/mySeries';
+import { myCustomCartoons } from "../../data/myCartoons";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -48,6 +49,7 @@ export default function Navbar() {
     const allSearchableContent = [
         ...myCustomMovies.map((m) => ({ ...m, mediaType: 'movie' as const })),
         ...myCustomSeries.map((s) => ({ ...s, mediaType: 'tv' as const })),
+        ...myCustomCartoons.map((c) => ({ ...c, mediaType: 'cartoon' as const })),
     ];
 
     // Handle navbar visibility and background on scroll
@@ -78,13 +80,16 @@ export default function Navbar() {
     const activeList = searchQuery.trim() !== '' ? filteredResults : trendingMovies;
 
     // Handle media selection & routing
-    const handleMediaSelect = (idOrItem: number | string | { id: number | string; mediaType: 'movie' | 'tv' }) => {
+    const handleMediaSelect = (idOrItem: number | string | { id: number | string; mediaType: 'movie' | 'tv' | 'cartoon' }) => {
         setIsSearchOpen(false);
         setSearchQuery('');
         setSelectedIndex(0);
 
         if (typeof idOrItem === 'object' && idOrItem !== null) {
-            const prefix = idOrItem.mediaType === 'tv' ? 'series' : 'movie';
+            let prefix = 'movie';
+            if (idOrItem.mediaType === 'tv') prefix = 'series';
+            else if (idOrItem.mediaType === 'cartoon') prefix = 'cartoon';
+            
             navigate(`/${prefix}/${idOrItem.id}`);
         } else if (typeof idOrItem === 'number') {
             navigate(`/movie/${idOrItem}`);
@@ -111,8 +116,8 @@ export default function Navbar() {
                 e.preventDefault();
                 if (activeList.length > 0 && activeList[selectedIndex]) {
                     const selectedItem = activeList[selectedIndex];
-                    if (typeof selectedItem === 'object' && 'id' in selectedItem) {
-                        handleMediaSelect(selectedItem as { id: number | string; mediaType: 'movie' | 'tv' });
+                    if (typeof selectedItem === 'object' && selectedItem !== null && 'id' in selectedItem) {
+                        handleMediaSelect(selectedItem as { id: number | string; mediaType: 'movie' | 'tv' | 'cartoon' });
                     } else if (typeof selectedItem === 'string') {
                         setSearchQuery(selectedItem);
                     }
